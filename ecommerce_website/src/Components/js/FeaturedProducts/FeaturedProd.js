@@ -29,7 +29,7 @@ class FeaturedProd extends Component {
         axios.get(this.getFeaturedProductsUrl())
             .then((res) => {
                 let response = res.data;
-                if(response.is_success) {
+                if (response.is_success) {
                     this.setState({
                         items: response.contents,
                     });
@@ -56,7 +56,8 @@ class FeaturedProd extends Component {
                     }
                 </div>
             </div>
-            );
+        );
     }
-} 
+}
+
 export default FeaturedProd;

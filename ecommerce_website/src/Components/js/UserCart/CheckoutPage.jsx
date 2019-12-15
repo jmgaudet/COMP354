@@ -1,5 +1,4 @@
-import React ,{useState} from 'react';
-import axios from "axios";
+import React, {useState} from 'react';
 import '../../css/Cart.css';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -8,11 +7,11 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import {connect} from "react-redux";
 import {createStructuredSelector} from 'reselect';
-import { selectCartItems, selectCartTotal } from '../../../Redux/cart/cart.selectors';
-import { selectUser } from '../../../Redux/user/user.selectors';
+import {selectCartItems, selectCartTotal} from '../../../Redux/cart/cart.selectors';
+import {selectUser} from '../../../Redux/user/user.selectors';
 import CheckoutItem from "./CheckoutItem";
 import L from '@material-ui/core/Link';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -48,7 +47,7 @@ const CheckoutPage = ({cartItems, total, user}) => {
             console.log(checkTwo);
             setAddress(user.alternateAddress);
         }
-    }
+    };
 
 
     return (
@@ -56,13 +55,13 @@ const CheckoutPage = ({cartItems, total, user}) => {
             {cartItems.length ?
                 (
                     <div className="checkout">
-                        <CheckoutPopup 
-                        cartItems={cartItems}
-                        total = {total}
-                        open={open} 
-                        handleClose={handleClose}
-                        address={address}
-                        user={user.sellerId}
+                        <CheckoutPopup
+                            cartItems={cartItems}
+                            total={total}
+                            open={open}
+                            handleClose={handleClose}
+                            address={address}
+                            user={user.sellerId}
                         />
                         <Table size="small">
                             <TableHead>
@@ -76,7 +75,7 @@ const CheckoutPage = ({cartItems, total, user}) => {
                             </TableHead>
                             <TableBody>
                                 {cartItems.map(cartItem => (
-                                    <CheckoutItem key={cartItem.id} cartItem={cartItem} />
+                                    <CheckoutItem key={cartItem.id} cartItem={cartItem}/>
                                 ))}
                             </TableBody>
                         </Table>
@@ -84,14 +83,14 @@ const CheckoutPage = ({cartItems, total, user}) => {
 
                         {user.alternateAddress != "null" && user.sellerId != null ? (
                             <div class="">
-                        <br/>
-                        <br/>
-                        <br/>
+                                <br/>
+                                <br/>
+                                <br/>
                                 Please choose a shipping address.
-                        <p></p>
+                                <p></p>
 
                                 <Table size="small">
-                                    <TableHead >
+                                    <TableHead>
                                         <TableRow>
                                             <TableCell>Primary Address </TableCell>
                                             <TableCell>Alternate Address </TableCell>
@@ -99,28 +98,28 @@ const CheckoutPage = ({cartItems, total, user}) => {
                                     </TableHead>
                                     <TableBody>
                                         <TableCell>
-                                        <p> {user.primaryAddress}</p>
-                                        <FormControlLabel
-                                            control={
-                                                <Checkbox
-                                                    onChange={handleChange("checkOne")}
-                                                    checked={checkOne}
-                                                    color="black"
-                                                />
-                                            } label="Primary"
-                                        />
-                                    </TableCell>
-                                    <TableCell>
-                                        <p> {user.alternateAddress}</p>
-                                        <FormControlLabel
-                                            control={
-                                                <Checkbox
-                                                    onChange={handleChange("checkTwo")}
-                                                    checked={checkTwo}
-                                                    color="black"
-                                                />
-                                            } label="Alternate"
-                                        />
+                                            <p> {user.primaryAddress}</p>
+                                            <FormControlLabel
+                                                control={
+                                                    <Checkbox
+                                                        onChange={handleChange("checkOne")}
+                                                        checked={checkOne}
+                                                        color="black"
+                                                    />
+                                                } label="Primary"
+                                            />
+                                        </TableCell>
+                                        <TableCell>
+                                            <p> {user.alternateAddress}</p>
+                                            <FormControlLabel
+                                                control={
+                                                    <Checkbox
+                                                        onChange={handleChange("checkTwo")}
+                                                        checked={checkTwo}
+                                                        color="black"
+                                                    />
+                                                } label="Alternate"
+                                            />
                                         </TableCell>
                                     </TableBody>
                                 </Table>
@@ -130,46 +129,46 @@ const CheckoutPage = ({cartItems, total, user}) => {
                         <p></p> <br></br>
 
                         {user.sellerId != null ? (
-                            <div class="pay_button">
-                                <Button 
-                                variant="outlined" 
-                                size="large"
-                                onClick={handleClickOpen}
-                                >
-                                    Complete Purchase
-                                </Button>
-                            </div>
-                        )
+                                <div class="pay_button">
+                                    <Button
+                                        variant="outlined"
+                                        size="large"
+                                        onClick={handleClickOpen}
+                                    >
+                                        Complete Purchase
+                                    </Button>
+                                </div>
+                            )
                             :
                             (
-                                
-                            <div className="pay_button">
-                                <L variant="body2" label="Login" component={Link} to={"/Login"} >
-                                    <Button
-                                        variant="outlined" 
-                                        size="large"
-                                    > Please Log In Before Purchase
-                                </Button>
-                                </L>
-                            </div>
-                               
+
+                                <div className="pay_button">
+                                    <L variant="body2" label="Login" component={Link} to={"/Login"}>
+                                        <Button
+                                            variant="outlined"
+                                            size="large"
+                                        > Please Log In Before Purchase
+                                        </Button>
+                                    </L>
+                                </div>
+
                             )
                         }
                     </div>
                 )
                 :
                 (
-                    <div align="center"> <h2> Your cart is empty </h2></div>
+                    <div align="center"><h2> Your cart is empty </h2></div>
                 )
             }
         </div>
     )
-}
+};
 
 
 const mapStateToProps = createStructuredSelector({
     user: selectUser,
-    cartItems:selectCartItems,
-    total:selectCartTotal
-})
+    cartItems: selectCartItems,
+    total: selectCartTotal
+});
 export default connect(mapStateToProps)(CheckoutPage);

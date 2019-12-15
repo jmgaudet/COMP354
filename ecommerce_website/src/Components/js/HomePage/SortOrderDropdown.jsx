@@ -12,7 +12,7 @@ export default class SortOrderDropdown extends Component {
     }
 
     handleSortOrderChanged(e) {
-        if(this.props.onSortOrderChanged) {
+        if (this.props.onSortOrderChanged) {
             this.props.onSortOrderChanged(e.target.value);
         }
     }

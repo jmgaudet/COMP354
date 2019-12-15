@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -32,7 +32,7 @@ export default function Products(props) {
         let url = `https://rocky-shore-99218.herokuapp.com/users/${props.sellerId}/products/`;
         axios
             .get(url)
-            .then(({ data }) => {
+            .then(({data}) => {
                 if (data.is_success) {
                     setAllItems(data.contents);
                 }
@@ -77,8 +77,8 @@ export default function Products(props) {
         fd.append("isFeatured", e.target.checked ? '1' : '0');
 
         axios.put(`https://rocky-shore-99218.herokuapp.com/products/${itemId}/details`, fd)
-            .then(({ data }) => {
-                if(data.is_success) {
+            .then(({data}) => {
+                if (data.is_success) {
                     fetchAllProducts();
                 }
             })
@@ -90,13 +90,15 @@ export default function Products(props) {
     return (
         <React.Fragment>
             <Title>Products</Title>
-            <AddProduct sellerId={props.sellerId} open={openAdd} handleClose={handleCloseAdd} />
-            <DeleteProduct sellerId={props.sellerId}  allItems={allItems} open={openDelete} handleClose={handleCloseDelete} />
-            <ModifyProduct allItems={allItems} open={openModify} handleClose={handleCloseModify} />
+            <AddProduct sellerId={props.sellerId} open={openAdd} handleClose={handleCloseAdd}/>
+            <DeleteProduct sellerId={props.sellerId} allItems={allItems} open={openDelete}
+                           handleClose={handleCloseDelete}/>
+            <ModifyProduct allItems={allItems} open={openModify} handleClose={handleCloseModify}/>
             <Grid spacing={6}>
                 <div>
                     <Button variant="outlined" color="primary" onClick={handleClickOpenAdd}> Add Product </Button>
-                    <Button variant="outlined" color="Secondary" onClick={handleClickOpenDelete}>Delete Product </Button>
+                    <Button variant="outlined" color="Secondary" onClick={handleClickOpenDelete}>Delete
+                        Product </Button>
                     <Button variant="outlined" color="default" onClick={handleClickOpenModify}> Modify Product </Button>
                 </div>
             </Grid>
@@ -115,23 +117,23 @@ export default function Products(props) {
                 </TableHead>
                 <TableBody>
                     {allItems.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map(item => (
-                        <TableRow key={item.id}>
-                            <TableCell>{item.created}</TableCell>
-                            <TableCell>{item.name}</TableCell>
-                            <TableCell>{item.quantity}</TableCell>
-                            <TableCell><Checkbox
-                                checked={item.isFeatured}
-                                onChange={handleFeaturedChecked}
-                                value={item.id}
-                                inputProps={{
-                                    'aria-label': 'Feature item on home page',
-                                }}
-                            /></TableCell>
-                            <TableCell>0</TableCell>
-                            <TableCell align="right">${item.price}</TableCell>
-                        </TableRow>
-                    ))}
+                        .map(item => (
+                            <TableRow key={item.id}>
+                                <TableCell>{item.created}</TableCell>
+                                <TableCell>{item.name}</TableCell>
+                                <TableCell>{item.quantity}</TableCell>
+                                <TableCell><Checkbox
+                                    checked={item.isFeatured}
+                                    onChange={handleFeaturedChecked}
+                                    value={item.id}
+                                    inputProps={{
+                                        'aria-label': 'Feature item on home page',
+                                    }}
+                                /></TableCell>
+                                <TableCell>0</TableCell>
+                                <TableCell align="right">${item.price}</TableCell>
+                            </TableRow>
+                        ))}
                 </TableBody>
             </Table>
             <TablePagination

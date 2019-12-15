@@ -1,15 +1,17 @@
 .outer-container {
-    padding:10px;
+    padding: 10px;
     /*display:inline-block;*/
 }
-.central_search_bar{
-	/*height: 100vh;*/
-	display: flex;
+
+.central_search_bar {
+    /*height: 100vh;*/
+    display: flex;
     justify-content: center;
     align-items: center;
 }
-.central_search_filters{
-	display: flex;
+
+.central_search_filters {
+    display: flex;
     justify-content: center;
     align-items: center;
 }

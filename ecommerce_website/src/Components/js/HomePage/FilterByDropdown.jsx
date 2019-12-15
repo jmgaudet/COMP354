@@ -12,7 +12,7 @@ export default class FilterByDropdown extends Component {
     }
 
     handleColumnChanged(e) {
-        if(this.props.onFilterColumnChange) {
+        if (this.props.onFilterColumnChange) {
             this.props.onFilterColumnChange(e.target.value);
         }
     }

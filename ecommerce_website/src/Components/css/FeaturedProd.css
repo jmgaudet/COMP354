@@ -8,6 +8,7 @@
     display: inline-block;
     margin: 5px 10px;
 }
+
 .scrolling-wrapper {
     -webkit-overflow-scrolling: touch;
 }

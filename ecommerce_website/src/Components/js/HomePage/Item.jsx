@@ -28,7 +28,7 @@ const Item = ({item, history, addItem}) => {
     };
 
     function confirmPressed(item) {
-        addItem(item)
+        addItem(item);
         handleClose();
     }
 
@@ -40,7 +40,7 @@ const Item = ({item, history, addItem}) => {
         setOpen(false);
     };
 
-    return(
+    return (
         <Card className="card-container">
             <CardContent
                 onClick={() => {
@@ -57,11 +57,11 @@ const Item = ({item, history, addItem}) => {
                 </div>
             </CardContent>
             <div className="item-button-container">
-                <Button 
+                <Button
                     className="add-to-cart-button"
-                    variant="outlined" 
+                    variant="outlined"
                     onClick={() => handleClickOpen(item)}>
-                        Add To Cart
+                    Add To Cart
                 </Button>
                 <Dialog
                     className="dialog-container"
@@ -74,19 +74,19 @@ const Item = ({item, history, addItem}) => {
                     fullWidth={true}
                 >
                     <DialogTitle id="alert-dialog-slide-title">{"Add to cart?"}</DialogTitle>
-                        <DialogContent>
-                            <DialogContentText id="alert-dialog-slide-description">
-                                <div className="image-container">
-                                    <img alt="item" src={images[0]} style={{width: 200, height: 200}} />
-                                </div>
-                                <Typography variant="h5" component="h2"> {name} </Typography>
-                                <Typography> Price: {price} $</Typography>
-                                <Typography> Category: {category} </Typography>
-                                <Typography> Manufacturer: {manufacturer} </Typography>
-                            </DialogContentText>
-                        </DialogContent>
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-slide-description">
+                            <div className="image-container">
+                                <img alt="item" src={images[0]} style={{width: 200, height: 200}}/>
+                            </div>
+                            <Typography variant="h5" component="h2"> {name} </Typography>
+                            <Typography> Price: {price} $</Typography>
+                            <Typography> Category: {category} </Typography>
+                            <Typography> Manufacturer: {manufacturer} </Typography>
+                        </DialogContentText>
+                    </DialogContent>
                     <DialogActions>
-                        <Button onClick={() =>cancelPressed()}>
+                        <Button onClick={() => cancelPressed()}>
                             Cancel
                         </Button>
                         <Button onClick={() => confirmPressed(item)}>
@@ -96,10 +96,11 @@ const Item = ({item, history, addItem}) => {
                 </Dialog>
             </div>
         </Card>
-)};
+    )
+};
 
 const mapDispatchToProps = dispatch => ({
     addItem: item => dispatch(addItem(item))
-})
+});
 
 export default withRouter(connect(null, mapDispatchToProps)(Item));

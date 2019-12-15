@@ -1,7 +1,7 @@
-import React, { useState, useEffect, Component } from 'react';
+import React, {Component} from 'react';
 import "../../css/HomePage.css"
 
-import { SearchBar } from "./SearchBar";
+import {SearchBar} from "./SearchBar";
 import ItemList from "./ItemList";
 import axios from "axios";
 import FilterByDropdown from "./FilterByDropdown";
@@ -12,101 +12,101 @@ import logo from '../../../ImageAssets/logo.png';
 
 export default class HomePage extends Component {
 
-  constructor(props) {
-    super(props);
+    constructor(props) {
+        super(props);
 
-    this.getProductsUrl = this.getProductsUrl.bind(this);
-    this.handleFilterColumnChanged = this.handleFilterColumnChanged.bind(this);
-    this.handleSearchChanged = this.handleSearchChanged.bind(this);
-    this.handleSortOrderChanged = this.handleSortOrderChanged.bind(this);
-    this.handlePageChanged = this.handlePageChanged.bind(this);
-    this.loadItems = this.loadItems.bind(this);
+        this.getProductsUrl = this.getProductsUrl.bind(this);
+        this.handleFilterColumnChanged = this.handleFilterColumnChanged.bind(this);
+        this.handleSearchChanged = this.handleSearchChanged.bind(this);
+        this.handleSortOrderChanged = this.handleSortOrderChanged.bind(this);
+        this.handlePageChanged = this.handlePageChanged.bind(this);
+        this.loadItems = this.loadItems.bind(this);
 
-    this.state = {
-      page: 1,
-      max: 8,
-      sort: "",
-      search: "",
-      asc: true,
-      pages: 1,
-      items: []
-    };
-  }
+        this.state = {
+            page: 1,
+            max: 8,
+            sort: "",
+            search: "",
+            asc: true,
+            pages: 1,
+            items: []
+        };
+    }
 
-  componentDidMount() {
-    this.loadItems();
-  }
+    componentDidMount() {
+        this.loadItems();
+    }
 
-  loadItems() {
-    axios.get(this.getProductsUrl())
-        .then((res) => {
-          let response = res.data;
-          if(response.is_success) {
-            this.setState({
-              items: response.contents,
-              pages: response.pages
+    loadItems() {
+        axios.get(this.getProductsUrl())
+            .then((res) => {
+                let response = res.data;
+                if (response.is_success) {
+                    this.setState({
+                        items: response.contents,
+                        pages: response.pages
+                    });
+                }
+            })
+            .catch((e) => {
+                console.log(e);
             });
-          }
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-  }
+    }
 
-  getProductsUrl() {
-    let url = `https://rocky-shore-99218.herokuapp.com/products?page=${this.state.page}&max=${this.state.max}&sort=${this.state.sort}&search=${this.state.search}&asc=${this.state.asc}`;
-    return url;
-  }
-  
-  handleSearchChanged(searchValue) {
-    this.setState({
-      search: searchValue,
-      page: 1
-    }, this.loadItems);
-  }
+    getProductsUrl() {
+        let url = `https://rocky-shore-99218.herokuapp.com/products?page=${this.state.page}&max=${this.state.max}&sort=${this.state.sort}&search=${this.state.search}&asc=${this.state.asc}`;
+        return url;
+    }
 
-  handleFilterColumnChanged(filterColumn) {
-    this.setState({
-      sort: filterColumn
-    }, this.loadItems);
-  }
+    handleSearchChanged(searchValue) {
+        this.setState({
+            search: searchValue,
+            page: 1
+        }, this.loadItems);
+    }
 
-  handleSortOrderChanged(sortOrder) {
-    this.setState({
-      asc: sortOrder
-    }, this.loadItems);
-  }
+    handleFilterColumnChanged(filterColumn) {
+        this.setState({
+            sort: filterColumn
+        }, this.loadItems);
+    }
 
-  handlePageChanged(page) {
-    this.setState({
-      page: page
-    }, this.loadItems);
-  }
+    handleSortOrderChanged(sortOrder) {
+        this.setState({
+            asc: sortOrder
+        }, this.loadItems);
+    }
 
-  render() {
-    return (
-        <div className="container" style={{marginLeft: 15, marginRight: 15}}>
-          <div>
-              <img className="central_logo" src={logo}/>
-              <FeaturedProd/>
-              <br/><br/>
-              <h1>Browse</h1>
-          <div class="central_search_elements">
+    handlePageChanged(page) {
+        this.setState({
+            page: page
+        }, this.loadItems);
+    }
 
-              <SearchBar handleChange={e => this.handleSearchChanged(e.target.value)}/>
-              <br></br>
-              <div class="central_search_filters"> 
-                  <FilterByDropdown onFilterColumnChange={c => this.handleFilterColumnChanged(c)}/>
-                  <SortOrderDropdown onSortOrderChanged={o => this.handleSortOrderChanged(o)}/>
-              </div>
+    render() {
+        return (
+            <div className="container" style={{marginLeft: 15, marginRight: 15}}>
+                <div>
+                    <img className="central_logo" src={logo}/>
+                    <FeaturedProd/>
+                    <br/><br/>
+                    <h1>Browse</h1>
+                    <div class="central_search_elements">
+
+                        <SearchBar handleChange={e => this.handleSearchChanged(e.target.value)}/>
+                        <br></br>
+                        <div class="central_search_filters">
+                            <FilterByDropdown onFilterColumnChange={c => this.handleFilterColumnChanged(c)}/>
+                            <SortOrderDropdown onSortOrderChanged={o => this.handleSortOrderChanged(o)}/>
+                        </div>
+                    </div>
+                </div>
+                <br></br><br></br><br></br>
+                <ItemList items={this.state.items} page={this.state.page}
+                          pages={this.state.pages} max={this.state.max}
+                          onPageClicked={this.handlePageChanged}/>
             </div>
-          </div>
-          <br></br><br></br><br></br>
-          <ItemList items={this.state.items} page={this.state.page}
-                    pages={this.state.pages} max={this.state.max}
-                    onPageClicked={this.handlePageChanged}/>
-        </div>
-    );
-  }
+        );
+    }
 
 }

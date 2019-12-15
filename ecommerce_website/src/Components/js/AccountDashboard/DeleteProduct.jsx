@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
@@ -40,7 +39,7 @@ const DeleteProduct = (props) => {
     function sendDeleteRequest() {
         axios
             .delete(`http://rocky-shore-99218.herokuapp.com/products/${productId}`)
-            .then(({ data }) => {
+            .then(({data}) => {
                 console.log(data);
             })
             .catch(function (response) {
@@ -68,7 +67,7 @@ const DeleteProduct = (props) => {
                                 <option id={item.id} value={JSON.stringify(item)}>{item.name}</option>)}
                         </Select>
                     </FormControl>
-                        <Typography>
+                    <Typography>
                         <div>
                             {product ?
                                 product + " is going to be deleted. Click Delete Product to confirm."
@@ -76,18 +75,18 @@ const DeleteProduct = (props) => {
                                 "Please select a Product to delete."
                             }
                         </div>
-                        </Typography>
-                    
+                    </Typography>
+
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={e=> {
+                    <Button onClick={e => {
                         props.handleClose();
                         setSelectProduct("");
                         setProductId("");
                         setProduct("");
                     }} color="primary">
                         Cancel
-          </Button>
+                    </Button>
                     <Button color="primary" onClick={e => {
                         sendDeleteRequest();
                         setSelectProduct("");
@@ -96,10 +95,10 @@ const DeleteProduct = (props) => {
                     }}>
 
                         Delete Product
-          </Button>
+                    </Button>
                 </DialogActions>
             </Dialog>
         </div>
     );
-}
+};
 export default DeleteProduct;

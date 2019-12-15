@@ -1,15 +1,16 @@
-.central_logo{
+.central_logo {
 
-	display: block;
-	margin: 0 auto;
+    display: block;
+    margin: 0 auto;
 
-	width: 300px;
-	height: 300px;
+    width: 300px;
+    height: 300px;
 }
-.central_search_elements{
-	display: block;
-	margin: 0 auto;
 
-	width: 65%;
-	height: 65%;
+.central_search_elements {
+    display: block;
+    margin: 0 auto;
+
+    width: 65%;
+    height: 65%;
 }

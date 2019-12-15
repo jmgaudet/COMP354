@@ -1,12 +1,12 @@
 .paper {
-  padding: 25px;
-  margin-left: 32px;
-  margin-right: 32px;
-  margin-bottom: 20px;
+    padding: 25px;
+    margin-left: 32px;
+    margin-right: 32px;
+    margin-bottom: 20px;
 }
 
 .text-field {
-  /* margin-left: 16px !important; */
-  margin-right: 16px !important;
-  min-width: 50% !important;
+    /* margin-left: 16px !important; */
+    margin-right: 16px !important;
+    min-width: 50% !important;
 }

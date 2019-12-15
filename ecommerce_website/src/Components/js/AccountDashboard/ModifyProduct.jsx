@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, {useEffect, useState} from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -16,7 +16,7 @@ const ModifyProduct = (props) => {
 
     const [selectProduct, setSelectProduct] = useState("");
     const [productId, setProductId] = useState("");
-    const [product, setProduct] = useState("")
+    const [product, setProduct] = useState("");
     const [price, setPrice] = useState("");
     const [quantity, setQuantity] = useState("");
     const [description, setDescription] = useState("");
@@ -62,7 +62,7 @@ const ModifyProduct = (props) => {
         console.log(productId);
         axios
             .put(`http://rocky-shore-99218.herokuapp.com/products/${productId}/details`, formData)
-            .then(({ data }) => {
+            .then(({data}) => {
                 console.log(data);
             })
             .catch(function (response) {
@@ -79,7 +79,7 @@ const ModifyProduct = (props) => {
                 <DialogContent>
                     <DialogContentText>
                         Please choose a Product at modify:
-          </DialogContentText>
+                    </DialogContentText>
                     <FormControl>
 
                         <InputLabel htmlFor="age-native-simple">Product</InputLabel>
@@ -165,7 +165,7 @@ const ModifyProduct = (props) => {
                         setCategory("");
                     }} color="primary">
                         Cancel
-          </Button>
+                    </Button>
                     <Button color="primary" onClick={e => {
                         sendPutRequest();
                         setSelectProduct("");
@@ -179,10 +179,10 @@ const ModifyProduct = (props) => {
                     }}>
 
                         Modify Product
-          </Button>
+                    </Button>
                 </DialogActions>
             </Dialog>
         </div>
     );
-}
+};
 export default ModifyProduct;

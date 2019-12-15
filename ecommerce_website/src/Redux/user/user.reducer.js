@@ -1,16 +1,16 @@
 const INITIAL_STATE = {
-    currentUser : null,
+    currentUser: null,
     sellerId: null,
     firstName: null,
     lastName: null,
     imageUrl: null,
     primaryAddress: null,
     alternateAddress: null,
-    isAdmin:null
-}
+    isAdmin: null
+};
 //if state is ever unset, it will pass Initial state
 const userReducer = (state = INITIAL_STATE, action) => {
-    switch(action.type) {
+    switch (action.type) {
         case'SET_CURRENT_USER':
             return {
                 ...state, //everything else on state
@@ -35,11 +35,11 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 primaryAddress: null,
                 alternateAddress: null,
                 isAdmin: null
-            }
+            };
 
         default:
             return state;
     }
-}
+};
 
 export default userReducer;
